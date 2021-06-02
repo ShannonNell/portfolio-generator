@@ -1,21 +1,17 @@
+const fs = require('fs');
+const generatePage = require('./src/page-template.js');
+
 const profileDataArgs = process.argv.slice(2);
+console.log(profileDataArgs);
 
-// Notice the lack of parentheses around the `profileDataArr` parameter
-const printProfileData = profileDataArr => {
-    // This...
-    for (let i = 0; i < profileDataArr.length; i += 1) {
-      console.log(profileDataArr[i]);
-    }
-  
-    console.log('================');
-  
-    // // Is the same as this...
-    // profileDataArr.forEach((profileItem) => {
-    //   console.log(profileItem)
-    // });
-    
-    //is the same as thiiss...
-    profileDataArr.forEach(profileItem => console.log(profileItem));
-  };
+const [Name, github] = profileDataArgs;
+console.log(Name, github);
 
-  printProfileData(profileDataArgs)
+const pageHTML = generatePage(Name, github);
+
+//fs.writeFile(name of file being created, data that will be written on file, callback function for error handling)
+fs.writeFile('index.html', generatePage(Name, github), err => {
+  if (err) throw err;
+
+  console.log('Portfolio complete! Check out index.html to see the output!');
+});
