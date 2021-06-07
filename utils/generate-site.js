@@ -33,3 +33,11 @@ const copyFile = () => {
         });
     });
 };
+
+//export functions
+// module.exports = {
+//     writeFile: writeFile,
+//     copyFile: copyFile
+// };
+//OR using shorthand property names (if property key namd is same name as value, you can do it this way)
+module.exports = {writeFile, copyFile};
